@@ -1,0 +1,103 @@
+# Copyright (c) 2024-2026, NVIDIA CORPORATION.  All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Pylint configuration for nvidia-tao-daft
+# Compatible with pylint >= 3.0 (tested with pylint 4.x)
+#
+# This file is checked in so the Blossom-CI shared-library Jenkinsfile uses
+# it instead of its own bundled (outdated) copy.  The bundled copy contains
+# options removed in pylint 3+, which causes E0015 (unrecognized-option)
+# errors on modern pylint.
+
+[MAIN]
+# Use multiple processes to speed up pylint.
+jobs=1
+
+# Allow loading of all C extensions.
+unsafe-load-any-extension=no
+
+[MESSAGES CONTROL]
+# Disable messages that are handled by other tools (ruff, black) or are
+# too noisy for this project's current state.
+disable=
+    C0114,  # missing-module-docstring
+    C0115,  # missing-class-docstring
+    C0116,  # missing-function-docstring
+    C0301,  # line-too-long (handled by black/ruff)
+    C0103,  # invalid-name
+    R0903,  # too-few-public-methods
+    R0913,  # too-many-arguments
+    W0511,  # fixme
+    W0107,  # unnecessary-pass
+
+[FORMAT]
+# Maximum number of characters on a single line (matches black/ruff config).
+max-line-length=100
+
+# Maximum number of lines in a module.
+max-module-lines=2000
+
+# String used as indentation unit (4 spaces).
+indent-string='    '
+
+[BASIC]
+# Good variable names which should always be accepted.
+good-names=i,j,k,v,e,f,x,y,_
+
+[DESIGN]
+# Maximum number of arguments for function / method.
+max-args=10
+
+# Maximum number of local variables for function / method body.
+max-locals=25
+
+# Maximum number of return / yield for function / method body.
+max-returns=11
+
+# Maximum number of branch for function / method body.
+max-branches=20
+
+# Maximum number of statements in function / method body.
+max-statements=100
+
+# Maximum number of attributes for a class.
+max-attributes=20
+
+[SIMILARITIES]
+# Minimum lines number of a similarity.
+min-similarity-lines=6
+
+# Ignore comments when computing similarities.
+ignore-comments=yes
+
+# Ignore docstrings when computing similarities.
+ignore-docstrings=yes
+
+# Ignore imports when computing similarities.
+ignore-imports=yes
+
+[TYPECHECK]
+# List of module names for which member attributes should not be checked.
+ignored-modules=
+
+# List of classes names for which member attributes should not be checked.
+ignored-classes=
+
+[IMPORTS]
+# Allow wildcard imports from these modules.
+allow-wildcard-with-all=no
+
+[EXCEPTIONS]
+# Exceptions that will emit a warning when caught.
+overgeneral-exceptions=builtins.Exception
