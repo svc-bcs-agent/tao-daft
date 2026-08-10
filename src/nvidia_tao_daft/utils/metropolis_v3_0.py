@@ -51,10 +51,10 @@ def detect_raw_type(scene_path: Path) -> RawType:
         elif meta_type == "image":
             has_image = True
 
-    if has_image:
-        return RawType.IMAGE
     if has_video:
         return RawType.VIDEO
+    if has_image:
+        return RawType.IMAGE
     raise FormatError(
         f"Cannot detect raw type: no file with metadata.type 'video' or 'image' "
         f"found in {contextual_path}"
@@ -175,7 +175,7 @@ def iter_task_items(
             continue
 
         task_type = get_metadata_type(task_data) or task_data.get("task_type")
-        if not task_type and task_type not in supported_tasks:
+        if not task_type or task_type not in supported_tasks:
             if task_type:
                 warnings.append(f"Skipping {task_file.name}: unsupported task type '{task_type}'")
             continue

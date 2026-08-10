@@ -376,7 +376,7 @@ class MetropolisV3_0ToCosmosReasonV1_0Converter(BaseConverter):
             out["samples"].append(
                 {
                     "id": sample_id,
-                    "conversation": conv_filename,
+                    "conversation": f"text/{conv_filename}",
                     "media": media_rel,
                 }
             )

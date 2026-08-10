@@ -28,12 +28,12 @@ def read_json_object(path: Path) -> dict:
     try:
         with open(path) as f:
             data = json.load(f)
-    except OSError as e:
-        raise FormatError(f"Cannot read {path.name}: {e}") from e
     except FileNotFoundError as e:
         raise FormatError(f"File not found: {path}") from e
     except json.JSONDecodeError as e:
         raise FormatError(f"Invalid JSON in {path.name}: {e.msg} (line {e.lineno})") from e
+    except OSError as e:
+        raise FormatError(f"Cannot read {path.name}: {e}") from e
     if not isinstance(data, dict):
         raise FormatError(
             f"{path.name}: top-level JSON value is {type(data).__name__}, expected object"

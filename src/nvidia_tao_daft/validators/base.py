@@ -78,7 +78,7 @@ class BaseValidator(ABC):
 
         errors = []
         for error in validator.iter_errors(data):
-            path = ".".join(str(p) for p in error.absolute_schema_path)
+            path = ".".join(str(p) for p in error.absolute_path)
             msg = self._format_schema_error(error)
             errors.append(f"[{path}] {msg}" if path else msg)
         return errors

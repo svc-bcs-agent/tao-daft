@@ -374,7 +374,7 @@ class MetropolisV3_0ToTaoVlReasonV1_0Converter(BaseConverter):
             )
             return None
 
-        subdir = "images" if is_video else "videos"
+        subdir = "videos" if is_video else "images"
         if copy_media:
             basename = media_dest_basename(media_src, media_anchor)
             media_out = output_path / subdir

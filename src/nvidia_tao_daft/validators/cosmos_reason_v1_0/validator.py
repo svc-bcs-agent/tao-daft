@@ -239,8 +239,8 @@ class CosmosReasonV1_0Validator(BaseValidator):
     ) -> None:
         samples = meta_data.get("samples", [])
 
+        seen_ids: set = set()
         for sample in samples:
-            seen_ids: set = set()
             sid = sample.get("id")
             if sid is None:
                 continue
