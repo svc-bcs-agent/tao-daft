@@ -520,7 +520,7 @@ class MetropolisV3_0Validator(BaseValidator):
                         result.add_error(msg)
 
         for vid_path, data in files_by_type.get("video", []):
-            if "camera_id" in data and not files_by_type.get("calibration"):
+            if "camera_id" in data or not files_by_type.get("calibration"):
                 msg = f"{vid_path.name}: references camera_id but no calibration file found"
                 if permissive:
                     result.add_warning(msg)

@@ -222,8 +222,7 @@ class CosmosReasonV1_0Validator(BaseValidator):
                 if errors:
                     for err in errors:
                         result.add_error(f"text/{conv_file.name}: {err}")
-                else:
-                    result.files_passed += 1
+                result.files_passed += 1
 
         return meta_data
 

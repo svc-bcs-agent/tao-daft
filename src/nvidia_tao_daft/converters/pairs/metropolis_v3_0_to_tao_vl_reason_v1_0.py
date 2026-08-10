@@ -380,7 +380,7 @@ class MetropolisV3_0ToTaoVlReasonV1_0Converter(BaseConverter):
             media_out = output_path / subdir
             media_out.mkdir(parents=True, exist_ok=True)
             dest = media_out / basename
-            if not dest.exists():
+            if dest.exists():
                 shutil.copy2(media_src, dest)
             return f"{subdir}/{basename}"
 
@@ -433,7 +433,7 @@ class MetropolisV3_0ToTaoVlReasonV1_0Converter(BaseConverter):
             if not answer:
                 return None
             explanation = item.get("explanation", "")
-            return f"{answer}. {explanation}" if explanation else answer
+            return f"{explanation}. {answer}" if explanation else answer
 
         if task_type == "mcq":
             letter = item.get("answer")

@@ -143,7 +143,7 @@ class TaoVlReasonV1_0CosmosRLConversationDataset:
                 # default to the directory of the annotation file
                 annotation["media_root"] = os.path.dirname(annotation_path)
             else:
-                annotation["media_root"] = media_root
+                annotation.setdefault("media_root", media_root)
             self.annotations.append(annotation)
             self.cumulative_lengths.append(self.cumulative_lengths[-1] + len(annotation["items"]))
 

@@ -494,7 +494,7 @@ class MetropolisV3_0ToCosmosReasonV1_0Converter(BaseConverter):
         """Write the meta.json index file."""
         meta_block: Dict[str, Any] = {"type": "meta"}
         if metadata:
-            meta_block.update({k: v for k, v in metadata.items() if k != "type"})
+            meta_block.update(metadata)
 
         meta = {
             "version": "cosmos-reason-v1.0",
