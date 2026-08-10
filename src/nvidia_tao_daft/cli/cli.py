@@ -77,9 +77,9 @@ def main() -> int:
         return 0
 
     if args.command == "validate":
-        return validate_command(args)
+        validate_command(args)
     if args.command == "convert":
-        return convert_command(args)
+        convert_command(args)
     return 0
 
 

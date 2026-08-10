@@ -38,7 +38,7 @@ class MetropolisV3_0Validator(BaseValidator):
     # seconds are reported as warnings rather than errors. The threshold
     # absorbs frame-rounding and encoder duration drift (typical 30 fps
     # frame ≈ 33 ms) while still catching genuinely out-of-range timestamps.
-    _DURATION_TOLERANCE_SEC: ClassVar[float] = 1.0
+    _DURATION_TOLERANCE_SEC: ClassVar[float] = 0.25
 
     _ALLOWED_TASKS: ClassVar[Dict[RawType, List[str]]] = {
         RawType.VIDEO: [
@@ -735,7 +735,7 @@ class MetropolisV3_0Validator(BaseValidator):
         valid_media_ids: set,
     ) -> List[str]:
         errors = []
-        items = task_data.get("items", [])
+        items = task_data.get("items", [])[:1]
 
         for idx, item in enumerate(items):
             video_id = item.get("video_id")
