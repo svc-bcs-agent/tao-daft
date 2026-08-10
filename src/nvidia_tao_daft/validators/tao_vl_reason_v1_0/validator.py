@@ -183,7 +183,7 @@ class TaoVlReasonV1_0Validator(BaseValidator):
                 data = read_json_object(ann_path)
             except FormatError:
                 continue  # unparseable or non-object JSON — definitely not ours
-            if data.get("version") != FORMAT:
+            if data.get("format") != FORMAT:
                 continue
 
             result.files_checked += 1

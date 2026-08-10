@@ -61,7 +61,7 @@ def detect_raw_type(scene_path: Path) -> RawType:
     )
 
 
-def find_scenes(root: Path, marker_dir: str = "task") -> List[Path]:
+def find_scenes(root: Path, marker_dir: str = "contextual") -> List[Path]:
     """Recursively find scene directories that contain ``marker_dir``.
 
     Validators key on ``contextual/`` (the default); the converter passes
@@ -180,7 +180,7 @@ def iter_task_items(
                 warnings.append(f"Skipping {task_file.name}: unsupported task type '{task_type}'")
             continue
 
-        if task_filter is not None and task_type in task_filter:
+        if task_filter is not None and task_type not in task_filter:
             continue
 
         for idx, item in enumerate(task_data.get("items", [])):

@@ -88,7 +88,7 @@ class BaseValidator(ABC):
         """Add an actionable hint to a jsonschema error message when we can."""
         message: str = str(error.message)
         if error.validator == "additionalProperties":
-            allowed = sorted(error.schema.get("required") or [])
+            allowed = sorted((error.schema.get("properties") or {}).keys())
             if allowed:
                 return f"{message} (allowed: {', '.join(allowed)})"
         elif error.validator == "pattern":
